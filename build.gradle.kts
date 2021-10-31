@@ -4,16 +4,27 @@ plugins {
 }
 
 group = "net.snezhniy"
-version = "1.1-SNAPSHOT"
+version = "1.2-SNAPSHOT"
 
 application {
     mainClass.set("net.snezhniy.AppKt")
 }
 
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
 tasks.withType<Jar> {
     manifest {
-        attributes["Main-Class"] = "net.snezhniy.AppKt"
+        attributes["Main-Class"] = application.mainClass.get()
     }
+
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    from(sourceSets.main.get().output)
+    dependsOn(configurations.runtimeClasspath)
+    from({
+        configurations.runtimeClasspath.get().filter { it.name.endsWith("jar") }.map { zipTree(it) }
+    })
 }
 
 tasks.withType<JavaCompile> {
@@ -31,5 +42,4 @@ repositories {
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.31")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2-native-mt")
 }
