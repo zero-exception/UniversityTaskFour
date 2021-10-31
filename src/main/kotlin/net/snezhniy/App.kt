@@ -12,7 +12,7 @@ import kotlin.system.exitProcess
 
 fun main(args: Array<String>) {
     val arg = if (args.isNotEmpty()) args[0] else "1"
-    val solutionClassPath = "net.snezhniy.tasks.task$arg.Main"
+    val solutionClassPath = "net.snezhniy.solutions.solution$arg.Main"
 
     val cls = try {
         Class.forName(solutionClassPath).kotlin
