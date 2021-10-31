@@ -4,8 +4,8 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package net.snezhniy.tasks;
+package net.snezhniy.solutions
 
-public interface TaskBase {
-    void run();
+interface SolutionBase {
+    fun run()
 }

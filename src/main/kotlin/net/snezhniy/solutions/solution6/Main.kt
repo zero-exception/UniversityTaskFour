@@ -4,9 +4,9 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package net.snezhniy.tasks.task6
+package net.snezhniy.solutions.solution6
 
-import net.snezhniy.tasks.SolutionBase
+import net.snezhniy.solutions.SolutionBase
 import java.io.File
 import kotlin.system.exitProcess
 
@@ -22,17 +22,17 @@ class Main : SolutionBase {
         print("Введите путь до текстового файла: ")
         val input = readLine().orEmpty().trim()
 
-        val file = File(input)
-        if (!file.exists()) {
+        val f = File(input)
+        if (!f.exists()) {
             println("Ой-ой, кажется вы указали некорректный путь...")
             exitProcess(1)
         }
 
-        val matrix = arrayListOf<ArrayList<Double?>>()
+        val matrix = arrayListOf<ArrayList<Double>>()
         File(input).forEachLine { line ->
             val numbers = line
                 .split("\\s+".toRegex())
-                .map { el -> el.toDoubleOrNull() }
+                .map { el -> el.toDouble() }
                 .toCollection(ArrayList())
 
             matrix.add(numbers)
