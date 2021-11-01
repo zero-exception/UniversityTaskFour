@@ -32,14 +32,16 @@ class Main : SolutionBase {
             exitProcess(1)
         }
 
-        val lines = f.readLines()
-            .toCollection(ArrayList())
-            .map { line ->
-                line.split("\\s+".toRegex())
-                    .sortedDescending()
-                    .joinToString(" ")
-            }
+        var lines = f.readLines()
+        println("Исходный файл: $lines")
+
+        lines = lines.map { line ->
+            line.split("\\s+".toRegex())
+                .sortedDescending()
+                .joinToString(" ")
+        }
 
         f.writeText(lines.joinToString("\n"))
+        println("Обработанный файл: $lines")
     }
 }
