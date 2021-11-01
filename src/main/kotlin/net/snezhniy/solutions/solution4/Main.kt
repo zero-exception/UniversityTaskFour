@@ -9,6 +9,11 @@ package net.snezhniy.solutions.solution4
 import net.snezhniy.solutions.SolutionBase
 import java.io.File
 
+/*
+4. Ввести с консоли имя файла (полный путь, по правилам Windows). Выдать информацию об этом файле:
+существует или нет. Если существует, то определить: доступен он для чтения или нет, доступен он для
+записи или нет.
+*/
 class Main : SolutionBase {
     override fun run() {
         print("Введите путь к файлу: ")
@@ -16,7 +21,12 @@ class Main : SolutionBase {
 
         val f = File(input)
 
-        val msg = if (f.exists()) "Этот файл существует, ура!" else "Кажется, такого файла нет..."
-        println(msg)
+        if (f.exists()) {
+            println("Этот файл существует, ура!")
+            println(if (f.canRead()) "Его возможно прочесть..." else "Его невозможно прочесть...")
+            println(if (f.canWrite()) "Он доступен для записи." else "Он недоступен для записи.")
+        } else {
+            println("Кажется, такого файла нет...")
+        }
     }
 }
