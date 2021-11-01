@@ -42,8 +42,10 @@ class Main : SolutionBase {
         }
 
         val sortedLine = lines[lineNumber - 1].split("\\s+".toRegex()).sorted().joinToString(" ")
-        lines[lineNumber - 1] = sortedLine
+        println("Оригинальный файл: $lines")
 
+        lines[lineNumber - 1] = sortedLine
         f.writeText(lines.joinToString("\n"))
+        println("Обработанный файл: $lines")
     }
 }
